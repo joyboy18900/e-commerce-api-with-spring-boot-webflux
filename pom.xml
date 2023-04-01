@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.example</groupId>
-	<artifactId>git remote add origin git@github.com:</artifactId>
+	<artifactId>spring-webflux-api</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>spring-webflux-api</name>
 	<description>Spring Boot WebFlux + PostgreSQL</description>
