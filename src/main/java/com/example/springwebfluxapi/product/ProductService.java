@@ -1,6 +1,7 @@
 package com.example.springwebfluxapi.service;
 
-import com.example.springwebfluxapi.model.Product;
+import com.example.springwebfluxapi.entity.Product;
+import com.example.springwebfluxapi.model.ProductRequest;
 import com.example.springwebfluxapi.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -8,6 +9,7 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class ProductService {
@@ -20,15 +22,22 @@ public class ProductService {
         return productRepository.findAll();
     }
 
-    public Mono<Product> findById(int id) {
+    public Mono<Product> findById(Integer id) {
         return productRepository.findById(id);
     }
 
-    public Mono<Product> save(Product product) {
+    public Mono<Product> save(ProductRequest productRequest) {
+
+        Product product = new Product();
+        product.setName(productRequest.getName());
+        product.setDescription(productRequest.getDescription());
+        product.setCategory_id(productRequest.getCategory_id());
+        product.setPrice(productRequest.getPrice());
+
         return productRepository.save(product);
     }
 
-    public Mono<Product> update(int id, Product product) {
+    public Mono<Product> update(Integer id, Product product) {
         return productRepository.findById(id).map(Optional::of).defaultIfEmpty(Optional.empty())
                 .flatMap(optionalTutorial -> {
                     if (optionalTutorial.isPresent()) {
@@ -39,7 +48,7 @@ public class ProductService {
                 });
     }
 
-    public Mono<Void> deleteById(int id) {
+    public Mono<Void> deleteById(Integer id) {
         return productRepository.deleteById(id);
     }
 

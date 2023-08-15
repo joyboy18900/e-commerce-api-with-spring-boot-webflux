@@ -1,14 +1,15 @@
 package com.example.springwebfluxapi.controller;
 
-import com.example.springwebfluxapi.model.Product;
+import com.example.springwebfluxapi.entity.Product;
+import com.example.springwebfluxapi.model.ProductRequest;
 import com.example.springwebfluxapi.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-@CrossOrigin(origins = "http://localhost:8081")
 @RestController
 @RequestMapping("/api/products")
 public class ProductController {
@@ -24,25 +25,25 @@ public class ProductController {
 
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public Mono<Product> getProductById(@PathVariable("id") int id) {
+    public Mono<Product> getProductById(@PathVariable("id") Integer id) {
         return productService.findById(id);
     }
 
     @PostMapping("/createProduct")
     @ResponseStatus(HttpStatus.CREATED)
-    public Mono<Product> createProduct(@RequestBody Product product) {
-        return productService.save(product);
+    public Mono<Product> createProduct(@RequestBody @Validated ProductRequest productRequest) {
+        return productService.save(productRequest);
     }
 
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public Mono<Product> updateProduct(@PathVariable("id") int id, @RequestBody Product product) {
+    public Mono<Product> updateProduct(@PathVariable("id") Integer id, @RequestBody Product product) {
         return productService.update(id, product);
     }
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public Mono<Void> deleteProduct(@PathVariable("id") int id) {
+    public Mono<Void> deleteProduct(@PathVariable("id") Integer id) {
         return productService.deleteById(id);
     }
 }
