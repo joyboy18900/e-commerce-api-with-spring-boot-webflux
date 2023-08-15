@@ -1,37 +1,37 @@
 package com.example.springwebfluxapi.product;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Column;
+import org.springframework.data.relational.core.mapping.Table;
 
 import java.io.Serializable;
 import java.time.LocalDate;
-import javax.persistence.*;
 
-@Entity
 @Table(name = Product.TABLE_NAME)
 public class Product implements Serializable {
 
     public static final String TABLE_NAME = "product";
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "name")
+    @Column("name")
     private String name;
 
-    @Column(name = "description")
+    @Column("description")
     private String description;
 
-    @Column(name = "category_id")
+    @Column("category_id")
     private int category_id;
 
-    @Column(name = "price")
+    @Column("price")
     private int price;
 
-    @Column(name = "create_date")
+    @Column("create_date")
     private LocalDate create_date;
 
-    @Column(name = "update_date")
+    @Column("update_date")
     private LocalDate update_date;
 
     @JsonIgnore
