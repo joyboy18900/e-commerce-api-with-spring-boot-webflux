@@ -1,10 +1,9 @@
-package com.example.springwebfluxapi.entity;
+package com.example.springwebfluxapi.product;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.UUID;
 import javax.persistence.*;
 
 @Entity

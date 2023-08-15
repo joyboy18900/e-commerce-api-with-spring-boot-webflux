@@ -1,15 +1,12 @@
-package com.example.springwebfluxapi.service;
+package com.example.springwebfluxapi.product;
 
-import com.example.springwebfluxapi.entity.Product;
 import com.example.springwebfluxapi.model.ProductRequest;
-import com.example.springwebfluxapi.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import java.util.Optional;
-import java.util.UUID;
 
 @Service
 public class ProductService {
