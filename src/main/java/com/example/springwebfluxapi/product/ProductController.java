@@ -1,12 +1,15 @@
 package com.example.springwebfluxapi.product;
 
-import com.example.springwebfluxapi.model.ProductRequest;
+import com.example.springwebfluxapi.product.handle.ProductNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/products")
@@ -16,15 +19,39 @@ public class ProductController {
     ProductService productService;
 
     @GetMapping("/getProducts")
-    @ResponseStatus(HttpStatus.OK)
-    public Flux<Product> getAllProducts(@RequestParam(required = false) String title) {
-        return productService.findAll();
+    public Flux<ResponseEntity<ProductResponse>> getAllProducts() { // @RequestParam(required = false) String productName
+        Flux<Product> products = productService.findAll();
+
+        Flux<ResponseEntity<ProductResponse>> productResponses = products.map(product -> {
+            ProductResponse productResponse = new ProductResponse();
+
+            productResponse.setName(product.getName());
+            productResponse.setDescription(product.getDescription());
+            productResponse.setCategoryId(product.getCategory_id());
+            productResponse.setCategoryName(String.valueOf(product.getCategory_id()));
+            productResponse.setPrice(product.getPrice());
+
+            return ResponseEntity.ok(productResponse);
+        });
+
+        return productResponses;
     }
 
     @GetMapping("/{id}")
-    @ResponseStatus(HttpStatus.OK)
-    public Mono<Product> getProductById(@PathVariable("id") Integer id) {
-        return productService.findById(id);
+    public Mono<ResponseEntity<ProductResponse>> getProductById(@PathVariable("id") Integer id) {
+        return productService.findById(id)
+            .map(prod -> {
+                ProductResponse response = new ProductResponse();
+
+                response.setName(prod.getName());
+                response.setDescription(prod.getDescription());
+                response.setCategoryId(prod.getCategory_id());
+                response.setCategoryName(String.valueOf(prod.getCategory_id()));
+                response.setPrice(prod.getPrice());
+
+                return ResponseEntity.ok(response);
+            })
+            .switchIfEmpty(Mono.error(new ProductNotFoundException("Product with ID " + id + " not found")));
     }
 
     @PostMapping("/createProduct")

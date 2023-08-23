@@ -1,6 +1,5 @@
 package com.example.springwebfluxapi.product;
 
-import com.example.springwebfluxapi.model.ProductRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
