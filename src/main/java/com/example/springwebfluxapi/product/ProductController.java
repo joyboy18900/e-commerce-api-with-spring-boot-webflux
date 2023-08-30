@@ -16,10 +16,10 @@ public class ProductController {
     ProductService productService;
 
     @GetMapping("/getProducts")
-    public Flux<ResponseEntity<ProductResponse>> getAllProducts() { // @RequestParam(required = false) String productName
+    public ResponseEntity<Flux<ProductResponse>> getAllProducts() { // @RequestParam(required = false) String productName
         Flux<Product> products = productService.findAll();
 
-        Flux<ResponseEntity<ProductResponse>> productResponses = products.map(product -> {
+        Flux<ProductResponse> productResponses = products.map(product -> {
             ProductResponse productResponse = new ProductResponse();
 
             productResponse.setName(product.getName());
@@ -28,10 +28,10 @@ public class ProductController {
             productResponse.setCategoryName(String.valueOf(product.getCategory_id()));
             productResponse.setPrice(product.getPrice());
 
-            return ResponseEntity.ok(productResponse);
+            return productResponse;
         });
 
-        return productResponses;
+        return ResponseEntity.ok(productResponses);
     }
 
     @GetMapping("/{id}")
@@ -56,7 +56,7 @@ public class ProductController {
         return productService.createProduct(productRequest);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/updateProduct/{id}")
     public Mono<ResponseEntity<ProductResponse>> updateProduct(@PathVariable("id") Integer id, @RequestBody @Validated ProductRequest productRequest) {
         return productService.updateProduct(id, productRequest)
                 .map(product -> {
@@ -70,7 +70,7 @@ public class ProductController {
                 });
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/deleteProductById/{id}")
     public Mono<ResponseEntity<Void>> deleteProductById(@PathVariable("id") Integer id) {
         return productService.deleteById(id)
                 .thenReturn(ResponseEntity.noContent().<Void>build());
