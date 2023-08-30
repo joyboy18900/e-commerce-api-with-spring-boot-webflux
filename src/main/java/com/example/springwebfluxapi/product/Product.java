@@ -7,7 +7,7 @@ import org.springframework.data.relational.core.mapping.Table;
 import java.io.Serializable;
 import java.time.LocalDate;
 
-@Table("products")
+@Table("product")
 public class Product implements Serializable {
 
     @Id
