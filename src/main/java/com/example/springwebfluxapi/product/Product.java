@@ -1,6 +1,5 @@
 package com.example.springwebfluxapi.product;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
@@ -8,10 +7,8 @@ import org.springframework.data.relational.core.mapping.Table;
 import java.io.Serializable;
 import java.time.LocalDate;
 
-@Table(name = Product.TABLE_NAME)
+@Table("products")
 public class Product implements Serializable {
-
-    public static final String TABLE_NAME = "product";
 
     @Id
     private Integer id;
@@ -34,12 +31,24 @@ public class Product implements Serializable {
     @Column("update_date")
     private LocalDate update_date;
 
-    @JsonIgnore
-    public int getId() {
+    public Product() {
+    }
+
+    public Product(Integer id, String name, String description, int category_id, int price, LocalDate create_date, LocalDate update_date) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.category_id = category_id;
+        this.price = price;
+        this.create_date = create_date;
+        this.update_date = update_date;
+    }
+
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
