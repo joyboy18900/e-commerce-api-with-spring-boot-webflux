@@ -2,6 +2,7 @@ package com.example.springwebfluxapi.product;
 
 
 import com.example.springwebfluxapi.model.ErrorResponse;
+import com.example.springwebfluxapi.product.handle.DuplicateProductNameException;
 import com.example.springwebfluxapi.product.handle.ProductNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,5 +20,13 @@ public class ProductControllerAdvice {
         errorResponse.setCode("24000");
         errorResponse.setDescription(ex.getMessage());
         return Mono.just(ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorResponse));
+    }
+
+    @ExceptionHandler(DuplicateProductNameException.class)
+    public Mono<ResponseEntity<ErrorResponse>> handleProductDuplicateName(DuplicateProductNameException ex, ServerWebExchange exchange) {
+        ErrorResponse errorResponse = new ErrorResponse();
+        errorResponse.setCode("25000");
+        errorResponse.setDescription(ex.getMessage());
+        return Mono.just(ResponseEntity.status(HttpStatus.CONFLICT).body(errorResponse));
     }
 }
