@@ -14,9 +14,10 @@ This project provides a robust e-commerce API built with Java Spring Boot WebFlu
 - Product Listing & Management
 - Cart Operations
 - Order Processing
-- Payment Integration
-- Reviews & Ratings
 - Admin Operations
+
+[//]: # (- Payment Integration)
+[//]: # (- Reviews & Ratings)
 
 ## Prerequisites
 - Java JDK (e.g., JDK 11 or higher)
@@ -53,15 +54,21 @@ This project provides a robust e-commerce API built with Java Spring Boot WebFlu
 - PUT `/api/orders/{orderId}`: Update a specific order by ID
 - DELETE `/api/orders/{orderId}`: Cancel an order
 
-### Payments
-- POST `/api/payments/checkout`: Process a payment and checkout
-- GET `/api/payments/history`: Fetch payment history for a user
+[//]: # (### Payments)
 
-### Reviews & Ratings
-- GET `/api/products/{productId}/reviews`: Fetch all reviews for a product
-- POST `/api/products/{productId}/reviews`: Submit a review for a product
-- PUT `/api/reviews/{reviewId}`: Update a review
-- DELETE `/api/reviews/{reviewId}`: Delete a review
+[//]: # (- POST `/api/payments/checkout`: Process a payment and checkout)
+
+[//]: # (- GET `/api/payments/history`: Fetch payment history for a user)
+
+[//]: # (### Reviews & Ratings)
+
+[//]: # (- GET `/api/products/{productId}/reviews`: Fetch all reviews for a product)
+
+[//]: # (- POST `/api/products/{productId}/reviews`: Submit a review for a product)
+
+[//]: # (- PUT `/api/reviews/{reviewId}`: Update a review)
+
+[//]: # (- DELETE `/api/reviews/{reviewId}`: Delete a review)
 
 ### Admin Operations
 - GET `/api/admin/users`: Fetch all users (admin only)
