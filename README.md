@@ -56,11 +56,11 @@ This project provides a robust e-commerce API built with Java Spring Boot WebFlu
 - DELETE `/api/cart/{productId}`: Remove a product from the cart
 
 ### Orders
-- GET `/api/orders`: Fetch all orders for authenticated user
-- GET `/api/orders/{orderId}`: Fetch a specific order by ID
-- POST `/api/orders`: Place a new order
-- PUT `/api/orders/{orderId}`: Update a specific order by ID
-- DELETE `/api/orders/{orderId}`: Cancel an order
+- GET `/api/orders/getOrders`: Fetch all orders for authenticated user
+- GET `/api/orders/getOrderById/{orderId}`: Fetch a specific order by ID
+- POST `/api/orders/createOrder`: Place a new order
+- PUT `/api/orders/updateOrder/{orderId}`: Update a specific order by ID
+- DELETE `/api/orders/deleteOrder/{orderId}`: Cancel an order
 
 [//]: # (### Payments)
 
