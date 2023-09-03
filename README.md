@@ -10,14 +10,17 @@
 This project provides a robust e-commerce API built with Java Spring Boot WebFlux. It offers asynchronous and non-blocking operations, ensuring scalable and efficient performance for e-commerce platforms.
 
 ## Features
-- User Registration & Authentication
+
+[//]: # (- User Registration & Authentication)
 - Product Listing & Management
 - Cart Operations
 - Order Processing
-- Admin Operations
 
 [//]: # (- Payment Integration)
+
 [//]: # (- Reviews & Ratings)
+
+[//]: # (- Admin Operations)
 
 ## Prerequisites
 - Java JDK (e.g., JDK 11 or higher)
@@ -27,12 +30,17 @@ This project provides a robust e-commerce API built with Java Spring Boot WebFlu
 
 ## API Endpoints
 
-### Users & Authentication
-- POST `/api/users/register`: Register a new user
-- POST `/api/users/login`: Authenticate a user
-- GET `/api/users/profile`: Fetch the authenticated user's profile
-- PUT `/api/users/profile`: Update the authenticated user's profile
-- DELETE `/api/users/profile`: Delete user account
+[//]: # (### Users & Authentication)
+
+[//]: # (- POST `/api/users/register`: Register a new user)
+
+[//]: # (- POST `/api/users/login`: Authenticate a user)
+
+[//]: # (- GET `/api/users/profile`: Fetch the authenticated user's profile)
+
+[//]: # (- PUT `/api/users/profile`: Update the authenticated user's profile)
+
+[//]: # (- DELETE `/api/users/profile`: Delete user account)
 
 ### Products
 - GET `/api/products/getProducts`: Fetch all products
@@ -70,8 +78,12 @@ This project provides a robust e-commerce API built with Java Spring Boot WebFlu
 
 [//]: # (- DELETE `/api/reviews/{reviewId}`: Delete a review)
 
-### Admin Operations
-- GET `/api/admin/users`: Fetch all users (admin only)
-- DELETE `/api/admin/users/{userId}`: Delete a user (admin only)
-- GET `/api/admin/orders`: Fetch all orders (admin only)
-- PUT `/api/admin/orders/{orderId}`: Update order status (admin only)
+[//]: # (### Admin Operations)
+
+[//]: # (- GET `/api/admin/users`: Fetch all users &#40;admin only&#41;)
+
+[//]: # (- DELETE `/api/admin/users/{userId}`: Delete a user &#40;admin only&#41;)
+
+[//]: # (- GET `/api/admin/orders`: Fetch all orders &#40;admin only&#41;)
+
+[//]: # (- PUT `/api/admin/orders/{orderId}`: Update order status &#40;admin only&#41;)
