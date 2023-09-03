@@ -34,9 +34,9 @@ public class ProductController {
         return ResponseEntity.ok(productResponses);
     }
 
-    @GetMapping("/{id}")
-    public Mono<ResponseEntity<ProductResponse>> getProductById(@PathVariable("id") Integer id) {
-        return productService.findById(id)
+    @GetMapping("/getProductById/{productId}")
+    public Mono<ResponseEntity<ProductResponse>> getProductById(@PathVariable("productId") Integer productId) {
+        return productService.findById(productId)
             .map(prod -> {
                 ProductResponse response = new ProductResponse();
 
@@ -48,7 +48,7 @@ public class ProductController {
 
                 return ResponseEntity.ok(response);
             })
-            .switchIfEmpty(Mono.error(new ProductNotFoundException("Product with ID " + id + " not found")));
+            .switchIfEmpty(Mono.error(new ProductNotFoundException("Product with ID " + productId + " not found")));
     }
 
     @PostMapping("/createProduct")
@@ -56,9 +56,9 @@ public class ProductController {
         return productService.createProduct(productRequest);
     }
 
-    @PutMapping("/updateProduct/{id}")
-    public Mono<ResponseEntity<ProductResponse>> updateProduct(@PathVariable("id") Integer id, @RequestBody @Validated ProductRequest productRequest) {
-        return productService.updateProduct(id, productRequest)
+    @PutMapping("/updateProduct/{productId}")
+    public Mono<ResponseEntity<ProductResponse>> updateProduct(@PathVariable("productId") Integer productId, @RequestBody @Validated ProductRequest productRequest) {
+        return productService.updateProduct(productId, productRequest)
                 .map(product -> {
                     ProductResponse response = new ProductResponse();
                     response.setName(product.getName());
@@ -70,15 +70,9 @@ public class ProductController {
                 });
     }
 
-    @DeleteMapping("/deleteProductById/{id}")
-    public Mono<ResponseEntity<Void>> deleteProductById(@PathVariable("id") Integer id) {
-        return productService.deleteById(id)
-                .thenReturn(ResponseEntity.noContent().<Void>build());
-    }
-
-    @DeleteMapping("/deleteAll")
-    public Mono<ResponseEntity<Void>> deleteAllProducts() {
-        return productService.deleteAll()
+    @DeleteMapping("/deleteProductById/{productId}")
+    public Mono<ResponseEntity<Void>> deleteProductById(@PathVariable("productId") Integer productId) {
+        return productService.deleteById(productId)
                 .thenReturn(ResponseEntity.noContent().<Void>build());
     }
 }

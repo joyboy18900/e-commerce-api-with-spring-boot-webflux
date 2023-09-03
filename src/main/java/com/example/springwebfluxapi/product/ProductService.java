@@ -51,8 +51,4 @@ public class ProductService {
     public Mono<Void> deleteById(Integer id) {
         return productRepository.deleteById(id);
     }
-
-    public Mono<Void> deleteAll() {
-        return productRepository.deleteAll();
-    }
 }
