@@ -23,9 +23,9 @@ This project provides a robust e-commerce API built with Java Spring Boot WebFlu
 [//]: # (- Admin Operations)
 
 ## Prerequisites
-- Java JDK (e.g., JDK 11 or higher)
+- Java JDK (JDK 17 or higher)
 - Maven
-- Database (e.g., PostgreSQL)
+- Database (PostgreSQL)
 - Any other necessary tools or libraries
 
 ## API Endpoints
