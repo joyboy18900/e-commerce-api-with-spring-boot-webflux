@@ -6,8 +6,9 @@ import org.springframework.data.relational.core.mapping.Table;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
-@Table("product")
+@Table("products")
 public class Product implements Serializable {
 
     @Id
@@ -19,22 +20,22 @@ public class Product implements Serializable {
     @Column("description")
     private String description;
 
-    @Column("category_id")
-    private int category_id;
-
     @Column("price")
     private int price;
 
+    @Column("category_id")
+    private int category_id;
+
     @Column("create_date")
-    private LocalDate create_date;
+    private LocalDateTime create_date;
 
     @Column("update_date")
-    private LocalDate update_date;
+    private LocalDateTime update_date;
 
     public Product() {
     }
 
-    public Product(Integer id, String name, String description, int category_id, int price, LocalDate create_date, LocalDate update_date) {
+    public Product(Integer id, String name, String description, int category_id, int price, LocalDateTime create_date, LocalDateTime update_date) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -84,19 +85,19 @@ public class Product implements Serializable {
         this.price = price;
     }
 
-    public LocalDate getCreate_date() {
+    public LocalDateTime getCreate_date() {
         return create_date;
     }
 
-    public void setCreate_date(LocalDate create_date) {
+    public void setCreate_date(LocalDateTime create_date) {
         this.create_date = create_date;
     }
 
-    public LocalDate getUpdate_date() {
+    public LocalDateTime getUpdate_date() {
         return update_date;
     }
 
-    public void setUpdate_date(LocalDate update_date) {
+    public void setUpdate_date(LocalDateTime update_date) {
         this.update_date = update_date;
     }
 }

@@ -8,6 +8,7 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Service
 public class ProductService {
@@ -30,7 +31,12 @@ public class ProductService {
                     return Mono.<Product>error(new DuplicateProductNameException("Product name already exists."));
                 })
                 .switchIfEmpty(Mono.defer(() -> {
-                    Product product = new Product(null, productRequest.getName(), productRequest.getDescription(), productRequest.getCategory_id(), productRequest.getPrice(), LocalDate.now(), LocalDate.now());
+                    Product product = new Product();
+                    product.setName(productRequest.getName());
+                    product.setDescription(productRequest.getDescription());
+                    product.setCategory_id(productRequest.getCategoryId());
+                    product.setPrice(productRequest.getPrice());
+
                     return productRepository.save(product);
                 }));
     }
@@ -40,9 +46,9 @@ public class ProductService {
                 .flatMap(existingProduct -> {
                     existingProduct.setName(productRequest.getName());
                     existingProduct.setDescription(productRequest.getDescription());
-                    existingProduct.setCategory_id(productRequest.getCategory_id());
+                    existingProduct.setCategory_id(productRequest.getCategoryId());
                     existingProduct.setPrice(productRequest.getPrice());
-                    existingProduct.setUpdate_date(LocalDate.now());
+                    existingProduct.setUpdate_date(LocalDateTime.now());
                     return productRepository.save(existingProduct);
                 })
                 .switchIfEmpty(Mono.error(new ProductNotFoundException("Product with ID " + id + " not found")));

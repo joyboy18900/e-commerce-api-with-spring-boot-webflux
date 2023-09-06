@@ -17,10 +17,10 @@ public class ProductRequest {
     private String description;
 
     @NotNull
-    private Integer category_id;
+    private Integer price;
 
     @NotNull
-    private Integer price;
+    private Integer categoryId;
 
     public String getName() {
         return name;
@@ -38,15 +38,7 @@ public class ProductRequest {
         this.description = description;
     }
 
-    public int getCategory_id() {
-        return category_id;
-    }
-
-    public void setCategory_id(Integer category_id) {
-        this.category_id = category_id;
-    }
-
-    public int getPrice() {
+    public Integer getPrice() {
         return price;
     }
 
@@ -54,16 +46,24 @@ public class ProductRequest {
         this.price = price;
     }
 
+    public Integer getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(Integer categoryId) {
+        this.categoryId = categoryId;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ProductRequest that = (ProductRequest) o;
-        return Objects.equals(name, that.name) && Objects.equals(description, that.description) && Objects.equals(category_id, that.category_id) && Objects.equals(price, that.price);
+        return Objects.equals(name, that.name) && Objects.equals(description, that.description) && Objects.equals(categoryId, that.categoryId) && Objects.equals(price, that.price);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, description, category_id, price);
+        return Objects.hash(name, description, categoryId, price);
     }
 }
