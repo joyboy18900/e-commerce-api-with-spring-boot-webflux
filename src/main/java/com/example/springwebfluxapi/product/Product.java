@@ -5,7 +5,6 @@ import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
 import java.io.Serializable;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Table("products")
@@ -24,25 +23,25 @@ public class Product implements Serializable {
     private int price;
 
     @Column("category_id")
-    private int category_id;
+    private int categoryId;
 
     @Column("create_date")
-    private LocalDateTime create_date;
+    private LocalDateTime createDate;
 
     @Column("update_date")
-    private LocalDateTime update_date;
+    private LocalDateTime updateDate;
 
     public Product() {
     }
 
-    public Product(Integer id, String name, String description, int category_id, int price, LocalDateTime create_date, LocalDateTime update_date) {
+    public Product(Integer id, String name, String description, int categoryId, int price, LocalDateTime createDate, LocalDateTime updateDate) {
         this.id = id;
         this.name = name;
         this.description = description;
-        this.category_id = category_id;
+        this.categoryId = categoryId;
         this.price = price;
-        this.create_date = create_date;
-        this.update_date = update_date;
+        this.createDate = createDate;
+        this.updateDate = updateDate;
     }
 
     public Integer getId() {
@@ -69,12 +68,12 @@ public class Product implements Serializable {
         this.description = description;
     }
 
-    public int getCategory_id() {
-        return category_id;
+    public int getCategoryId() {
+        return categoryId;
     }
 
-    public void setCategory_id(int category_id) {
-        this.category_id = category_id;
+    public void setCategoryId(int categoryId) {
+        this.categoryId = categoryId;
     }
 
     public int getPrice() {
@@ -85,19 +84,19 @@ public class Product implements Serializable {
         this.price = price;
     }
 
-    public LocalDateTime getCreate_date() {
-        return create_date;
+    public LocalDateTime getCreateDate() {
+        return createDate;
     }
 
-    public void setCreate_date(LocalDateTime create_date) {
-        this.create_date = create_date;
+    public void setCreateDate(LocalDateTime createDate) {
+        this.createDate = createDate;
     }
 
-    public LocalDateTime getUpdate_date() {
-        return update_date;
+    public LocalDateTime getUpdateDate() {
+        return updateDate;
     }
 
-    public void setUpdate_date(LocalDateTime update_date) {
-        this.update_date = update_date;
+    public void setUpdateDate(LocalDateTime updateDate) {
+        this.updateDate = updateDate;
     }
 }

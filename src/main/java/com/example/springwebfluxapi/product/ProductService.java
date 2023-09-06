@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Service
@@ -34,7 +33,7 @@ public class ProductService {
                     Product product = new Product();
                     product.setName(productRequest.getName());
                     product.setDescription(productRequest.getDescription());
-                    product.setCategory_id(productRequest.getCategoryId());
+                    product.setCategoryId(productRequest.getCategoryId());
                     product.setPrice(productRequest.getPrice());
 
                     return productRepository.save(product);
@@ -46,9 +45,9 @@ public class ProductService {
                 .flatMap(existingProduct -> {
                     existingProduct.setName(productRequest.getName());
                     existingProduct.setDescription(productRequest.getDescription());
-                    existingProduct.setCategory_id(productRequest.getCategoryId());
+                    existingProduct.setCategoryId(productRequest.getCategoryId());
                     existingProduct.setPrice(productRequest.getPrice());
-                    existingProduct.setUpdate_date(LocalDateTime.now());
+                    existingProduct.setUpdateDate(LocalDateTime.now());
                     return productRepository.save(existingProduct);
                 })
                 .switchIfEmpty(Mono.error(new ProductNotFoundException("Product with ID " + id + " not found")));

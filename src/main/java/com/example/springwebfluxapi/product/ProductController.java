@@ -24,8 +24,8 @@ public class ProductController {
 
             productResponse.setName(product.getName());
             productResponse.setDescription(product.getDescription());
-            productResponse.setCategoryId(product.getCategory_id());
-            productResponse.setCategoryName(String.valueOf(product.getCategory_id()));
+            productResponse.setCategoryId(product.getCategoryId());
+            productResponse.setCategoryName(String.valueOf(product.getCategoryId()));
             productResponse.setPrice(product.getPrice());
 
             return productResponse;
@@ -42,8 +42,8 @@ public class ProductController {
 
                 response.setName(prod.getName());
                 response.setDescription(prod.getDescription());
-                response.setCategoryId(prod.getCategory_id());
-                response.setCategoryName(String.valueOf(prod.getCategory_id()));
+                response.setCategoryId(prod.getCategoryId());
+                response.setCategoryName(String.valueOf(prod.getCategoryId()));
                 response.setPrice(prod.getPrice());
 
                 return ResponseEntity.ok(response);
@@ -63,8 +63,8 @@ public class ProductController {
                     ProductResponse response = new ProductResponse();
                     response.setName(product.getName());
                     response.setDescription(product.getDescription());
-                    response.setCategoryId(product.getCategory_id());
-                    response.setCategoryName(String.valueOf(product.getCategory_id()));
+                    response.setCategoryId(product.getCategoryId());
+                    response.setCategoryName(String.valueOf(product.getCategoryId()));
                     response.setPrice(product.getPrice());
                     return ResponseEntity.ok(response);
                 });
