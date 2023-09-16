@@ -5,7 +5,7 @@ public class ProductResponse {
     private String name;
     private String description;
     private Integer categoryId;
-    private String categoryName;
+    private String categoryname;
     private Integer price;
 
     public String getName() {
@@ -33,11 +33,11 @@ public class ProductResponse {
     }
 
     public String getCategoryName() {
-        return categoryName;
+        return categoryname;
     }
 
     public void setCategoryName(String categoryName) {
-        this.categoryName = categoryName;
+        this.categoryname = categoryName;
     }
 
     public Integer getPrice() {

@@ -20,6 +20,23 @@ public class ProductService {
         return productRepository.findAll();
     }
 
+    public Flux<ProductResponse> getAllProductsWithProductType() {
+        Flux<ProductResponse> products = productRepository.findAllWithProductCategory();
+        Flux<ProductResponse> productResponses = products.map(product -> {
+            ProductResponse productResponse = new ProductResponse();
+
+            productResponse.setName(product.getName());
+            productResponse.setDescription(product.getDescription());
+            productResponse.setCategoryId(product.getCategoryId());
+            productResponse.setCategoryName(product.getCategoryName());
+            productResponse.setPrice(product.getPrice());
+
+            return productResponse;
+        });
+
+        return productResponses;
+    }
+
     public Mono<Product> findById(Integer id) {
         return productRepository.findById(id);
     }

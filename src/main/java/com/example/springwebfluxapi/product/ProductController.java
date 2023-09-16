@@ -17,20 +17,7 @@ public class ProductController {
 
     @GetMapping("/getProducts")
     public ResponseEntity<Flux<ProductResponse>> getAllProducts() { // @RequestParam(required = false) String productName
-        Flux<Product> products = productService.findAll();
-
-        Flux<ProductResponse> productResponses = products.map(product -> {
-            ProductResponse productResponse = new ProductResponse();
-
-            productResponse.setName(product.getName());
-            productResponse.setDescription(product.getDescription());
-            productResponse.setCategoryId(product.getCategoryId());
-            productResponse.setCategoryName(String.valueOf(product.getCategoryId()));
-            productResponse.setPrice(product.getPrice());
-
-            return productResponse;
-        });
-
+        Flux<ProductResponse> productResponses = productService.getAllProductsWithProductType();
         return ResponseEntity.ok(productResponses);
     }
 

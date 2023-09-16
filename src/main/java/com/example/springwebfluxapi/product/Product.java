@@ -1,6 +1,8 @@
 package com.example.springwebfluxapi.product;
 
+import com.example.springwebfluxapi.productCategories.ProductCategory;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.Transient;
 import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
@@ -20,10 +22,13 @@ public class Product implements Serializable {
     private String description;
 
     @Column("price")
-    private int price;
+    private Integer price;
 
     @Column("category_id")
-    private int categoryId;
+    private Integer categoryId;
+
+    @Transient
+    private ProductCategory productCategory;
 
     @Column("create_date")
     private LocalDateTime createDate;
