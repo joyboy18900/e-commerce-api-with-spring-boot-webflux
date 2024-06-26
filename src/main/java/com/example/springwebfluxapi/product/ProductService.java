@@ -15,30 +15,15 @@ public class ProductService {
     @Autowired
     ProductRepository productRepository;
 
-    public Flux<Product> findAll() {
-
-        return productRepository.findAll();
-    }
-
     public Flux<ProductResponse> getAllProductsWithProductType() {
-        Flux<ProductResponse> products = productRepository.findAllWithProductCategory();
-        Flux<ProductResponse> productResponses = products.map(product -> {
-            ProductResponse productResponse = new ProductResponse();
-
-            productResponse.setName(product.getName());
-            productResponse.setDescription(product.getDescription());
-            productResponse.setCategoryId(product.getCategoryId());
-            productResponse.setCategoryName(product.getCategoryName());
-            productResponse.setPrice(product.getPrice());
-
-            return productResponse;
-        });
-
-        return productResponses;
+        return productRepository.findAllWithProductCategory()
+                .map(this::mapProductToProductResponse);
     }
 
-    public Mono<Product> findById(Integer id) {
-        return productRepository.findById(id);
+    public Mono<ProductResponse> findById(Integer productId) {
+        return productRepository.findByIdWithCategory(productId)
+                .map(this::mapProductToProductResponse)
+                .switchIfEmpty(Mono.error(new ProductNotFoundException("Product with ID " + productId + " not found")));
     }
 
     public Mono<Product> createProduct(ProductRequest productRequest) {
@@ -72,5 +57,16 @@ public class ProductService {
 
     public Mono<Void> deleteById(Integer id) {
         return productRepository.deleteById(id);
+    }
+
+    private ProductResponse mapProductToProductResponse(Product product) {
+        ProductResponse productResponse = new ProductResponse();
+        productResponse.setId(product.getId());
+        productResponse.setName(product.getName());
+        productResponse.setDescription(product.getDescription());
+        productResponse.setCategoryId(product.getCategoryId());
+        productResponse.setCategoryName(product.getCategoryName());
+        productResponse.setPrice(product.getPrice());
+        return productResponse;
     }
 }

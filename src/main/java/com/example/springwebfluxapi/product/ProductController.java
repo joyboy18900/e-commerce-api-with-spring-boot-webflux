@@ -20,22 +20,11 @@ public class ProductController {
         Flux<ProductResponse> productResponses = productService.getAllProductsWithProductType();
         return ResponseEntity.ok(productResponses);
     }
-
+    
     @GetMapping("/getProductById/{productId}")
-    public Mono<ResponseEntity<ProductResponse>> getProductById(@PathVariable("productId") Integer productId) {
-        return productService.findById(productId)
-            .map(prod -> {
-                ProductResponse response = new ProductResponse();
-
-                response.setName(prod.getName());
-                response.setDescription(prod.getDescription());
-                response.setCategoryId(prod.getCategoryId());
-                response.setCategoryName(String.valueOf(prod.getCategoryId()));
-                response.setPrice(prod.getPrice());
-
-                return ResponseEntity.ok(response);
-            })
-            .switchIfEmpty(Mono.error(new ProductNotFoundException("Product with ID " + productId + " not found")));
+    public ResponseEntity<Mono<ProductResponse>> getProductById(@PathVariable("productId") Integer productId) {
+        Mono<ProductResponse> productResponses = productService.findById(productId);
+        return ResponseEntity.ok(productResponses);
     }
 
     @PostMapping("/createProduct")

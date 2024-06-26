@@ -27,6 +27,9 @@ public class Product implements Serializable {
     @Column("category_id")
     private Integer categoryId;
 
+    @Column("category_name")
+    private String categoryName;
+
     @Transient
     private ProductCategory productCategory;
 
@@ -35,19 +38,6 @@ public class Product implements Serializable {
 
     @Column("update_date")
     private LocalDateTime updateDate;
-
-    public Product() {
-    }
-
-    public Product(Integer id, String name, String description, int categoryId, int price, LocalDateTime createDate, LocalDateTime updateDate) {
-        this.id = id;
-        this.name = name;
-        this.description = description;
-        this.categoryId = categoryId;
-        this.price = price;
-        this.createDate = createDate;
-        this.updateDate = updateDate;
-    }
 
     public Integer getId() {
         return id;
@@ -73,20 +63,36 @@ public class Product implements Serializable {
         this.description = description;
     }
 
-    public int getCategoryId() {
-        return categoryId;
-    }
-
-    public void setCategoryId(int categoryId) {
-        this.categoryId = categoryId;
-    }
-
-    public int getPrice() {
+    public Integer getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(Integer price) {
         this.price = price;
+    }
+
+    public Integer getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(Integer categoryId) {
+        this.categoryId = categoryId;
+    }
+
+    public String getCategoryName() {
+        return categoryName;
+    }
+
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
+    }
+
+    public ProductCategory getProductCategory() {
+        return productCategory;
+    }
+
+    public void setProductCategory(ProductCategory productCategory) {
+        this.productCategory = productCategory;
     }
 
     public LocalDateTime getCreateDate() {
